@@ -1,0 +1,125 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7f8;
+}
+
+.topbar {
+    background-color: #0073a8;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    z-index: 1000;
+    
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px 20px; 
+    height: 70px; 
+    color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+
+.topbar-logo {
+    height: 35px;
+    width: 180px;
+    border-radius: 5px; 
+    padding: 3px;
+    object-fit: contain;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    flex-shrink: 1; 
+}
+
+.topbar-right {
+    flex-shrink: 0; 
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    flex-shrink: 1; 
+}
+
+.topbar-right .btn-logout {
+    background-color: #ffd700; 
+    color: #ffff;
+    padding: 8px 15px;
+    border-radius: 4px; 
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    box-shadow: 0 1px 3px rgb(255, 255, 255); 
+}
+.topbar-right .btn-logout:hover {
+    background-color: #ffc400;
+}
+
+.sidebar {
+    background-color: #0073a8;
+    position: fixed;
+    top: 70px; 
+    left: 0;
+    width: 220px;
+    height: calc(100vh - 70px); 
+    box-shadow: 2px 0 6px rgba(0,0,0,0.15);
+    overflow-y: auto; 
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 12px 20px; 
+    color: white;
+    text-decoration: none;
+    border-left: 5px solid transparent;
+    transition: background 0.3s, color 0.3s, border-left-color 0.3s;
+    font-size: 0.95em;
+}
+
+.sidebar ul li a:hover {
+    background-color: #004c67;
+    color: #fff;
+}
+
+.sidebar ul li a.active {
+    background-color: #004c67; 
+    color: #ffd700; 
+    font-weight: 600;
+    border-left-color: #ffd700;
+}
+
+.main-content {
+    margin-left: 220px; 
+    padding: 30px;
+    margin-top: 70px; 
+    background: white; 
+    min-height: calc(100vh - 70px); 
+    box-shadow: -1px 0 3px rgba(0,0,0,0.05); 
+}
+
+.main-content h1 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.main-content p {
+    color: #666;
+    line-height: 1.6;
+}
