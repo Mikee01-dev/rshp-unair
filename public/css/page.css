@@ -13,7 +13,8 @@
 }
 
 table {
-    width: 50%;
+    /* Menggabungkan width: 100% yang sebelumnya berulang */
+    width: 100%; 
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #fff;
@@ -38,4 +39,40 @@ td {
 
 tr:hover {
     background-color: #f1f9ff;
+}
+
+/* --- Styling Khusus untuk Blok Rekam Medis --- */
+
+.rekam-medis-block {
+    /* Menambah padding internal untuk spacing antar elemen dalam blok */
+    padding: 15px 0; 
+}
+
+/* Style untuk judul utama rekam medis */
+.rekam-medis-block h3 {
+    font-size: 18px;
+    color: #004E7C;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #0072A8;
+    padding-bottom: 5px;
+}
+
+/* Style untuk sub-judul detail (e.g., "Detail Tindakan") */
+.rekam-medis-block h4 {
+    font-size: 16px;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Style untuk paragraf umum */
+.rekam-medis-block p {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* Style untuk label penting (e.g., Anamnese, Diagnosa) */
+.rekam-medis-block p strong {
+    color: #0072A8;
+    font-weight: bold;
 }
