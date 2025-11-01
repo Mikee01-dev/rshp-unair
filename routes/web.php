@@ -58,4 +58,6 @@ Route::middleware(['auth', isDokter::class])->group(function () {
 
 Route::middleware(['auth', isPemilik::class])->group(function () {
     route::get('/pemilik/dashboard', [App\Http\Controllers\Pemilik\DashboardPemilikController::class, 'index'])->name('pemilik.dashboard');
+    route::get('/pemilik/pet', [App\Http\Controllers\Pemilik\PetPemilikController::class, 'index'])->name('pemilik.pet.index');
+    route::get('/pemilik/temu-dokter', [App\Http\Controllers\Pemilik\TemuPemilikController::class, 'index'])->name('pemilik.temu-dokter.index');
 });

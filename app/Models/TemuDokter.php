@@ -18,5 +18,11 @@ class TemuDokter extends Model
         return $this->belongsTo(Pet::class, 'idpet');
     }
 
+        public function dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'iddokter');
+    }
+
+
 
 }

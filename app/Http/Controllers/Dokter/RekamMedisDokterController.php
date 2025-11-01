@@ -6,17 +6,28 @@ use App\Models\RekamMedis;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\RoleUser;
 
 class RekamMedisDokterController extends Controller
 {
     public function rekamMedisSaya()
     {
-        $dokterId = Auth::user()->iddokter;
+        $userId = Auth::user()->iduser; 
 
-        $rekamMedis = RekamMedis::where('iddokter', $dokterId)
-            ->with(['pet', 'detailRekamMedis.kodeTindakanTerapi'])
-            ->get();
+        $roleUserDokter = RoleUser::where('iduser', $userId)
+                                    ->where('idrole', 2)
+                                    ->first();
 
-        return view('dokter.rekam_medis', compact('rekamMedis'));
+        if (!$roleUserDokter) {
+            $rekamMedis = collect([]); 
+        } else {
+            $idRoleUserDokter = $roleUserDokter->idrole_user; 
+
+            $rekamMedis = RekamMedis::where('dokter_pemeriksa', $idRoleUserDokter)
+                ->with(['pet', 'detailRekamMedis.kodeTindakanTerapi'])
+                ->get();
+        }
+
+        return view('dokter.rekam-medis', compact('rekamMedis'));
     }
 }

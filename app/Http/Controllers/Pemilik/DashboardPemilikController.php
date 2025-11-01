@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class DashboardPemilikController extends Controller
 {
-    //
+    function index()
+    {
+        return view('pemilik.dashboard');
+    }
 }
