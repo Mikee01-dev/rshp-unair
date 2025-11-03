@@ -12,7 +12,7 @@ class RasHewan extends Model
 
     protected $fillable = [
         'nama_ras',
-        'nama_jenis_hewan',
+        'idjenis_hewan',
     ];
 
     public function jenis()

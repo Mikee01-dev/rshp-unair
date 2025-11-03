@@ -14,7 +14,7 @@ class Pet extends Model
         'nama',
         'idras_hewan',
         'idjenis_hewan',
-        'warna_tandan',
+        'warna_tanda',
         'tanggal_lahir',
         'jenis_kelamin',
         'idpemilik',

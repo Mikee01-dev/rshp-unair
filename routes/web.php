@@ -37,6 +37,87 @@ Route::middleware(['auth', isAdmin::class])->group(function () {
     Route::get('/admin/pet', [App\Http\Controllers\Admin\PetController::class, 'index'])->name('admin.pet.index');
     Route::get('/admin/user-role', [App\Http\Controllers\Admin\RoleUserController::class, 'index'])->name('admin.user-role.index');
     Route::get('/admin/jenis-hewan', [App\Http\Controllers\Admin\JenisHewanController::class, 'index'])->name('admin.jenis-hewan.index');
+
+    route::prefix('jenis-hewan')->name('jenis-hewan.')->group(function () {
+        route::get('/', [App\Http\Controllers\Admin\JenisHewanController::class, 'index'])->name('index');
+        route::get('/create', [App\Http\Controllers\Admin\JenisHewanController::class, 'create'])->name('create');
+        route::post('/', [App\Http\Controllers\Admin\JenisHewanController::class, 'store'])->name('store');
+        route::get('/{id}/edit', [App\Http\Controllers\Admin\JenisHewanController::class, 'edit'])->name('edit');
+        route::put('/{id}', [App\Http\Controllers\Admin\JenisHewanController::class, 'update'])->name('update');
+        route::delete('/{id}', [App\Http\Controllers\Admin\JenisHewanController::class, 'destroy'])->name('destroy');
+    });
+
+    route::prefix('ras-hewan')->name('ras-hewan.')->group(function () {
+        route::get('/', [App\Http\Controllers\Admin\RasHewanController::class, 'index'])->name('index');
+        route::get('/create', [App\Http\Controllers\Admin\RasHewanController::class, 'create'])->name('create');
+        route::post('/', [App\Http\Controllers\Admin\RasHewanController::class, 'store'])->name('store');
+        route::get('/{id}/edit', [App\Http\Controllers\Admin\RasHewanController::class, 'edit'])->name('edit');
+        route::put('/{id}', [App\Http\Controllers\Admin\RasHewanController::class, 'update'])->name('update');
+        route::delete('/{id}', [App\Http\Controllers\Admin\RasHewanController::class, 'destroy'])->name('destroy');
+    });
+
+    route::prefix('kategori')->name('kategori.')->group(function () {
+        route::get('/', [App\Http\Controllers\Admin\KategoriController::class, 'index'])->name('index');
+        route::get('/create', [App\Http\Controllers\Admin\KategoriController::class, 'create'])->name('create');
+        route::post('/', [App\Http\Controllers\Admin\KategoriController::class, 'store'])->name('store');
+        route::get('/{id}/edit', [App\Http\Controllers\Admin\KategoriController::class, 'edit'])->name('edit');
+        route::put('/{id}', [App\Http\Controllers\Admin\KategoriController::class, 'update'])->name('update');
+        route::delete('/{id}', [App\Http\Controllers\Admin\KategoriController::class, 'destroy'])->name('destroy');
+    });
+
+    route::prefix('kategori-klinis')->name('kategori-klinis.')->group(function () {
+        route::get('/', [App\Http\Controllers\Admin\KategoriKlinisController::class, 'index'])->name('index');
+        route::get('/create', [App\Http\Controllers\Admin\KategoriKlinisController::class, 'create'])->name('create');
+        route::post('/', [App\Http\Controllers\Admin\KategoriKlinisController::class, 'store'])->name('store');
+        route::get('/{id}/edit', [App\Http\Controllers\Admin\KategoriKlinisController::class, 'edit'])->name('edit');
+        route::put('/{id}', [App\Http\Controllers\Admin\KategoriKlinisController::class, 'update'])->name('update');
+        route::delete('/{id}', [App\Http\Controllers\Admin\KategoriKlinisController::class, 'destroy'])->name('destroy');
+    });
+
+    route::prefix('kode-tindakan-terapi')->name('kode-tindakan-terapi.')->group(function () {
+        route::get('/', [App\Http\Controllers\Admin\KodeTindakanTerapiController::class, 'index'])->name('index');
+        route::get('/create', [App\Http\Controllers\Admin\KodeTindakanTerapiController::class, 'create'])->name('create');
+        route::post('/', [App\Http\Controllers\Admin\KodeTindakanTerapiController::class, 'store'])->name('store');
+        route::get('/{id}/edit', [App\Http\Controllers\Admin\KodeTindakanTerapiController::class, 'edit'])->name('edit');
+        route::put('/{id}', [App\Http\Controllers\Admin\KodeTindakanTerapiController::class, 'update'])->name('update');
+        route::delete('/{id}', [App\Http\Controllers\Admin\KodeTindakanTerapiController::class, 'destroy'])->name('destroy');
+    });
+
+    route::prefix('role')->name('role.')->group(function () {
+        route::get('/', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('index');
+        route::get('/create', [App\Http\Controllers\Admin\RoleController::class, 'create'])->name('create');
+        route::post('/', [App\Http\Controllers\Admin\RoleController::class, 'store'])->name('store');
+        route::get('/{id}/edit', [App\Http\Controllers\Admin\RoleController::class, 'edit'])->name('edit');
+        route::put('/{id}', [App\Http\Controllers\Admin\RoleController::class, 'update'])->name('update');
+        route::delete('/{id}', [App\Http\Controllers\Admin\RoleController::class, 'destroy'])->name('destroy');
+    });
+
+    route::prefix('user-role')->name('user-role.')->group(function () {
+        route::get('/', [App\Http\Controllers\Admin\RoleUserController::class, 'index'])->name('index');
+        route::get('/create', [App\Http\Controllers\Admin\RoleUserController::class, 'create'])->name('create');
+        route::post('/', [App\Http\Controllers\Admin\RoleUserController::class, 'store'])->name('store');
+        route::get('/{id}/edit', [App\Http\Controllers\Admin\RoleUserController::class, 'edit'])->name('edit');
+        route::put('/{id}', [App\Http\Controllers\Admin\RoleUserController::class, 'update'])->name('update');
+        route::delete('/{id}', [App\Http\Controllers\Admin\RoleUserController::class, 'destroy'])->name('destroy');
+    });
+
+    route::prefix('pet')->name('pet.')->group(function () {
+        route::get('/', [App\Http\Controllers\Admin\PetController::class, 'index'])->name('index');
+        route::get('/create', [App\Http\Controllers\Admin\PetController::class, 'create'])->name('create');
+        route::post('/', [App\Http\Controllers\Admin\PetController::class, 'store'])->name('store');
+        route::get('/{id}/edit', [App\Http\Controllers\Admin\PetController::class, 'edit'])->name('edit');
+        route::put('/{id}', [App\Http\Controllers\Admin\PetController::class, 'update'])->name('update');
+        route::delete('/{id}', [App\Http\Controllers\Admin\PetController::class, 'destroy'])->name('destroy');
+    });
+
+    route::prefix('pemilik')->name('pemilik.')->group(function () {
+        route::get('/', [App\Http\Controllers\Admin\PemilikController::class, 'index'])->name('index');
+        route::get('/create', [App\Http\Controllers\Admin\PemilikController::class, 'create'])->name('create');
+        route::post('/', [App\Http\Controllers\Admin\PemilikController::class, 'store'])->name('store');
+        route::get('/{id}/edit', [App\Http\Controllers\Admin\PemilikController::class, 'edit'])->name('edit');
+        route::put('/{id}', [App\Http\Controllers\Admin\PemilikController::class, 'update'])->name('update');
+        route::delete('/{id}', [App\Http\Controllers\Admin\PemilikController::class, 'destroy'])->name('destroy');
+    });
 });
 
 Route::middleware(['auth', isResepsionis::class])->group(function () {

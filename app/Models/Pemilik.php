@@ -8,10 +8,15 @@ class Pemilik extends Model
 {
     protected $table = 'pemilik';
     protected $primaryKey = 'idpemilik';
+
+    public $timestamps = false;
+    
     protected $fillable = [
+        'iduser',
         'alamat',
         'no_wa',
     ];
+
 
     public function user()
     {
