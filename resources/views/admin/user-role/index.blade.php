@@ -1,29 +1,49 @@
 @extends('layouts.admin')
 
 @section('content')
-
 <div class="container">
-    <link rel="stylesheet" href="{{ asset('css/page.css') }}">
-    <h2 class="judul-halaman">Daftar User Role</h2>
+    <h2 class="judul-halaman">Manajemen User & Role</h2>
+
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+
+    <div style="margin-bottom: 15px;">
+        <a href="{{ route('user-role.create') }}" class="btn btn-success">+ Tambah User Role</a>
+    </div>
+
     <table>
-    <thead>
-        <tr>
-            <th>Id User</th>
-            <th>Nama</th>
-            <th>Email</th>
-            <th>Nama Role</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($roleUser as $item)
+        <thead>
             <tr>
-                <td>{{ $item->idrole_user }}</td>
-                <td>{{ $item->user->nama }}</td>
-                <td>{{ $item->user->email }}</td>
-                <td>{{ $item->role->nama_role }}</td>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Aksi</th>
             </tr>
-        @endforeach
-    </tbody>
+        </thead>
+        <tbody>
+            @foreach ($roleUser as $index => $item)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $item->user->nama ?? '-' }}</td>
+                    <td>{{ $item->user->email ?? '-' }}</td>
+                    <td>{{ $item->role->nama_role ?? '-' }}</td>
+                    <td>
+                        <a href="{{ route('user-role.edit', $item->iduser) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <form action="{{ route('user-role.destroy', $item->iduser) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus user ini?')">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
-    
 @endsection

@@ -92,13 +92,13 @@ Route::middleware(['auth', isAdmin::class])->group(function () {
         route::delete('/{id}', [App\Http\Controllers\Admin\RoleController::class, 'destroy'])->name('destroy');
     });
 
-    route::prefix('user-role')->name('user-role.')->group(function () {
-        route::get('/', [App\Http\Controllers\Admin\RoleUserController::class, 'index'])->name('index');
-        route::get('/create', [App\Http\Controllers\Admin\RoleUserController::class, 'create'])->name('create');
-        route::post('/', [App\Http\Controllers\Admin\RoleUserController::class, 'store'])->name('store');
-        route::get('/{id}/edit', [App\Http\Controllers\Admin\RoleUserController::class, 'edit'])->name('edit');
-        route::put('/{id}', [App\Http\Controllers\Admin\RoleUserController::class, 'update'])->name('update');
-        route::delete('/{id}', [App\Http\Controllers\Admin\RoleUserController::class, 'destroy'])->name('destroy');
+    Route::prefix('user-role')->name('user-role.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\RoleUserController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Admin\RoleUserController::class, 'create'])->name('create');
+        Route::post('/', [App\Http\Controllers\Admin\RoleUserController::class, 'store'])->name('store');
+        Route::get('/{iduser}/edit', [App\Http\Controllers\Admin\RoleUserController::class, 'edit'])->name('edit');
+        Route::put('/{iduser}', [App\Http\Controllers\Admin\RoleUserController::class, 'update'])->name('update');
+        Route::delete('/{iduser}', [App\Http\Controllers\Admin\RoleUserController::class, 'destroy'])->name('destroy');
     });
 
     route::prefix('pet')->name('pet.')->group(function () {
@@ -118,6 +118,16 @@ Route::middleware(['auth', isAdmin::class])->group(function () {
         route::put('/{id}', [App\Http\Controllers\Admin\PemilikController::class, 'update'])->name('update');
         route::delete('/{id}', [App\Http\Controllers\Admin\PemilikController::class, 'destroy'])->name('destroy');
     });
+
+    route::prefix('role')->name('role.')->group(function () {
+        route::get('/', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('index');
+        route::get('/create', [App\Http\Controllers\Admin\RoleController::class, 'create'])->name('create');
+        route::post('/', [App\Http\Controllers\Admin\RoleController::class, 'store'])->name('store');
+        route::get('/{id}/edit', [App\Http\Controllers\Admin\RoleController::class, 'edit'])->name('edit');
+        route::put('/{id}', [App\Http\Controllers\Admin\RoleController::class, 'update'])->name('update');
+        route::delete('/{id}', [App\Http\Controllers\Admin\RoleController::class, 'destroy'])->name('destroy');
+});
+
 });
 
 Route::middleware(['auth', isResepsionis::class])->group(function () {
