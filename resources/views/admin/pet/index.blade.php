@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.lte.main')
 
 @section('content')
 
@@ -9,6 +9,7 @@
     <thead>
         <div style="margin-bottom: 15px;">
             <a href="{{ route('pet.create') }}" class="btn btn-success">+ Tambah Hewan Peliharaan</a>
+        </div>
         <tr>
             <th>No</th>
             <th>Nama Hewan</th>

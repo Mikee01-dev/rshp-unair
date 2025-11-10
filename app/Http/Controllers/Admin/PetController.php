@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Pet;
+use App\Models\Pemilik;
+use App\Models\RasHewan;
+
 class PetController extends Controller
 {
     public function index()
@@ -16,7 +19,9 @@ class PetController extends Controller
 
     public function create()
     {
-        return view('admin.pet.create');
+        $ras = RasHewan::with('jenis')->get();
+        $pemilik = Pemilik::all();
+        return view('admin.pet.create', compact('ras', 'pemilik'));
     }
 
     public function store(Request $request)

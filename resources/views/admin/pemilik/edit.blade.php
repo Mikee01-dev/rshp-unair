@@ -1,25 +1,15 @@
-@extends('layouts.admin')
+@extends('layouts.lte.main')
 
 @section('title', 'Edit Pemilik')
 
 @section('content')
-<div class="container mt-4">
+<div class="container">
     <link rel="stylesheet" href="{{ asset('css/page.css') }}">
-    <h2 class="judul-halaman mb-4">Edit Pemilik</h2>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Terjadi kesalahan!</strong>
-            <ul class="mb-0 mt-2">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <div class="card">
-        <div class="card-body">
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Edit Pemilik</div>
+                    <div class="card-body">
             <form action="{{ route('pemilik.update', $pemilik->idpemilik) }}" method="POST">
                 @csrf
                 @method('PUT')

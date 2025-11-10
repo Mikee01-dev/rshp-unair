@@ -1,7 +1,9 @@
-@extends('layouts.admin')
+@extends('layouts.lte.main')
 
 @section('content')
 <div class="container">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}">
+    
     <h2 class="judul-halaman">Manajemen User & Role</h2>
 
     @if(session('success'))

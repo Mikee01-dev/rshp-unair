@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\JenisHewan;
+use Illuminate\Support\Facades\DB;
 
 class JenisHewanController extends Controller
 {
     public function index()
     {
-        $jenisHewan = JenisHewan::all();
+        $jenisHewan = DB::table('jenis_hewan')->get();
         return view('admin.jenis-hewan.index', compact('jenisHewan'));
     }
 
@@ -23,7 +23,7 @@ class JenisHewanController extends Controller
     {
         $this->validateJenisHewan($request);
 
-        JenisHewan::create([
+        DB::table('jenis_hewan')->insert([
             'nama_jenis_hewan' => $this->formatNamaJenisHewan($request->nama_jenis_hewan),
         ]);
 
@@ -32,7 +32,10 @@ class JenisHewanController extends Controller
 
     public function edit($id)
     {
-        $jenisHewan = JenisHewan::findOrFail($id);
+        $jenisHewan = DB::table('jenis_hewan')->where('idjenis_hewan', $id)->first();
+        if (!$jenisHewan) {
+            abort(404);
+        }
         return view('admin.jenis-hewan.edit', compact('jenisHewan'));
     }
 
@@ -40,8 +43,7 @@ class JenisHewanController extends Controller
     {
         $this->validateJenisHewan($request);
 
-        $jenisHewan = JenisHewan::findOrFail($id);
-        $jenisHewan->update([
+        DB::table('jenis_hewan')->where('idjenis_hewan', $id)->update([
             'nama_jenis_hewan' => $this->formatNamaJenisHewan($request->nama_jenis_hewan),
         ]);
 
@@ -50,8 +52,7 @@ class JenisHewanController extends Controller
 
     public function destroy($id)
     {
-        $jenisHewan = JenisHewan::findOrFail($id);
-        $jenisHewan->delete();
+        DB::table('jenis_hewan')->where('idjenis_hewan', $id)->delete();
 
         return redirect()->route('admin.jenis-hewan.index')->with('success', 'Jenis hewan berhasil dihapus.');
     }

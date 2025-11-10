@@ -1,8 +1,10 @@
-@extends('layouts.admin')
+@extends('layouts.lte.main')
+
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}">
+    <div class="row justify-content-center mt-3">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Tambah Jenis Hewan</div>

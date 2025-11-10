@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.lte.main')
 
 @section('content')
 
@@ -8,11 +8,9 @@
 
     <table>
         <thead>
-            <tr>
-                <th colspan="3" style="text-align: left;">
-                    <a href="{{ route('kategori.create') }}" class="btn btn-success">+ Tambah Kategori</a>
-                </th>
-            </tr>
+            <div style="margin-bottom: 15px;">
+                <a href="{{ route('kategori.create') }}" class="btn btn-success">+ Tambah Kategori</a>
+            </div>
             <tr>
                 <th>No</th>
                 <th>Nama Kategori</th>

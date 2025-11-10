@@ -1,18 +1,15 @@
-@extends('layouts.admin')
+@extends('layouts.lte.main')
 
 @section('content')
-
 <div class="container">
     <link rel="stylesheet" href="{{ asset('css/page.css') }}">
     <h2 class="judul-halaman">Daftar Ras Hewan</h2>
 
     <table>
         <thead>
-            <tr>
-                <th colspan="4" style="text-align: left;">
-                    <a href="{{ route('ras-hewan.create') }}" class="btn btn-success">+ Tambah Ras Hewan</a>
-                </th>
-            </tr>
+            <div style="margin-bottom: 15px;">
+                <a href="{{ route('ras-hewan.create') }}" class="btn btn-success">+ Tambah Ras Hewan</a>
+            </div>
             <tr>
                 <th>No</th>
                 <th>Nama Ras Hewan</th>

@@ -1,25 +1,14 @@
-@extends('layouts.admin')
+@extends('layouts.lte.main')
 
 @section('title', 'Edit Jenis Hewan')
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}">
+        <div class="row justify-content-center mt-3">
         <div class="col-md-8">
-
-            <h2 class="mb-4">Edit Jenis Hewan</h2>
-
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             <div class="card">
+                <div class="card-header">Edit Jenis Hewan</div>
                 <div class="card-body">
                     <form action="{{ route('jenis-hewan.update', $jenisHewan->idjenis_hewan) }}" method="POST">
                         @csrf
