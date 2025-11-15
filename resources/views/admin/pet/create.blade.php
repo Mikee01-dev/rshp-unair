@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('admin.pet.store') }}">
+    <form method="POST" action="{{ route('pet.store') }}">
         @csrf
 
         <div class="form-group">
@@ -82,7 +82,7 @@
 
         <div class="form-group mt-3">
             <button type="submit" class="btn btn-primary">Simpan</button>
-            <a href="{{ route('admin.pet.index') }}" class="btn btn-secondary">Batal</a>
+            <a href="{{ route('pet.index') }}" class="btn btn-secondary">Batal</a>
         </div>
     </form>
 </div>
