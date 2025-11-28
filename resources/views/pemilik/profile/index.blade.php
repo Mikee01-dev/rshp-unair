@@ -1,21 +1,60 @@
 @extends('layouts.lte.main')
+
 @section('content')
-<div class="app-content-header"><div class="container-fluid"><h3>Profil Pemilik</h3></div></div>
-<div class="app-content">
+
+<div class="app-content-header">
     <div class="container-fluid">
-        <div class="card card-primary card-outline col-md-6 mx-auto">
-            <div class="card-body box-profile">
-                <h3 class="profile-username text-center">{{ $user->nama }}</h3>
-                <p class="text-muted text-center">{{ $user->email }}</p>
-                <ul class="list-group list-group-unbordered mb-3">
-                    <li class="list-group-item"><b>No WA</b> <a class="float-end">{{ $pemilik->no_wa }}</a></li>
-                    <li class="list-group-item"><b>Alamat</b> <a class="float-end">{{ $pemilik->alamat }}</a></li>
-                </ul>
-                <div class="alert alert-info text-center">
-                    Hubungi Resepsionis jika ingin mengubah data profil.
-                </div>
-            </div>
-        </div>
+        <h3 class="fw-bold mb-0">
+            <i class="bi bi-person-circle text-info me-2"></i>
+            Profil Saya
+        </h3>
     </div>
 </div>
+
+<div class="app-content">
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="card shadow-sm border-0">
+
+                    {{-- HEADER PROFILE --}}
+                    <div class="card-body text-center bg-info text-white rounded-top">
+                        <i class="bi bi-person-badge fs-1 mb-2"></i>
+                        <h3 class="mb-0">{{ $user->nama }}</h3>
+                        <small class="opacity-75">Pemilik</small>
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item d-flex justify-content-between">
+                                <strong>Email Login</strong>
+                                <span>{{ $user->email }}</span>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between">
+                                <strong>Nomor HP</strong>
+                                <span>{{ $pemilik->no_wa ?? '-' }}</span>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between">
+                                <strong>Alamat</strong>
+                                <span class="text-end" style="max-width: 60%;">{{ $pemilik->alamat ?? '-' }}</span>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
 @endsection
