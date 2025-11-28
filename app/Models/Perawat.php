@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+
 class Perawat extends Model
 {
     use HasFactory;
@@ -19,4 +20,9 @@ class Perawat extends Model
         'pendidikan',
         'id_user',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'iduser');
+    }
 }

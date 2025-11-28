@@ -33,7 +33,7 @@ class RasHewanController extends Controller
             'idjenis_hewan' => $request->idjenis_hewan,
         ]);
 
-        return redirect()->route('admin.ras-hewan.index')->with('success', 'Ras Hewan berhasil ditambahkan.');
+        return redirect()->route('ras-hewan.index')->with('success', 'Ras Hewan berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -56,13 +56,13 @@ class RasHewanController extends Controller
             'idjenis_hewan' => $request->idjenis_hewan,
         ]);
 
-        return redirect()->route('admin.ras-hewan.index')->with('success', 'Ras Hewan berhasil diperbarui.');
+        return redirect()->route('ras-hewan.index')->with('success', 'Ras Hewan berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         RasHewan::findOrFail($id)->delete();
-        return redirect()->route('admin.ras-hewan.index')->with('success', 'Ras Hewan berhasil dihapus.');
+        return redirect()->route('ras-hewan.index')->with('success', 'Ras Hewan berhasil dihapus.');
     }
 
     public function formatNamaRasHewan($nama)

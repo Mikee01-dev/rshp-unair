@@ -70,4 +70,14 @@ class User extends Authenticatable
         return $this->roles()->where('nama_role', $roleName)->exists();
     }
 
+    public function dokter()
+    {
+        return $this->hasOne(Dokter::class, 'iduser', 'iduser');
+    }
+
+    public function perawat()
+    {
+        return $this->hasOne(Perawat::class, 'iduser', 'iduser');
+    }
+
 }

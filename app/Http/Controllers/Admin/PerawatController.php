@@ -11,7 +11,7 @@ class PerawatController extends Controller
 {
     public function index()
     {
-        $perawats = Perawat::all();
+        $perawats = Perawat::with('user')->get();
         return view('admin.perawat.index', compact('perawats'));
     }
 

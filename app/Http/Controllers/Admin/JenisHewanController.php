@@ -27,7 +27,7 @@ class JenisHewanController extends Controller
             'nama_jenis_hewan' => $this->formatNamaJenisHewan($request->nama_jenis_hewan),
         ]);
 
-        return redirect()->route('admin.jenis-hewan.index')->with('success', 'Jenis hewan berhasil ditambahkan.');
+        return redirect()->route('jenis-hewan.index')->with('success', 'Jenis hewan berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -47,14 +47,14 @@ class JenisHewanController extends Controller
             'nama_jenis_hewan' => $this->formatNamaJenisHewan($request->nama_jenis_hewan),
         ]);
 
-        return redirect()->route('admin.jenis-hewan.index')->with('success', 'Jenis hewan berhasil diperbarui.');
+        return redirect()->route('jenis-hewan.index')->with('success', 'Jenis hewan berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         DB::table('jenis_hewan')->where('idjenis_hewan', $id)->delete();
 
-        return redirect()->route('admin.jenis-hewan.index')->with('success', 'Jenis hewan berhasil dihapus.');
+        return redirect()->route('jenis-hewan.index')->with('success', 'Jenis hewan berhasil dihapus.');
     }
 
     private function validateJenisHewan(Request $request)

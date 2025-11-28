@@ -1,41 +1,86 @@
 @extends('layouts.lte.main')
 
+@section('title', 'Tambah Jenis Hewan')
 
 @section('content')
-<div class="container">
-    <link rel="stylesheet" href="{{ asset('css/page.css') }}">
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Tambah Jenis Hewan</div>
-                <div class="card-body">
-                    <form action="{{ route('jenis-hewan.store') }}" method="POST">
-                        @csrf
 
-                        <div class="form-group">
-                            <label for="nama_jenis_hewan">Nama Jenis Hewan</label>
-                            <input type="text" 
-                                   name="nama_jenis_hewan" 
-                                   id="nama_jenis_hewan"
-                                   class="form-control @error('nama_jenis_hewan') is-invalid @enderror"
-                                   value="{{ old('nama_jenis_hewan') }}" 
-                                   required>
+{{-- HEADER --}}
+<div class="app-content-header">
+    <div class="container-fluid">
+        <div class="row align-items-center">
 
-                            @error('nama_jenis_hewan')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="mt-3 d-flex gap-2">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ route('jenis-hewan.index') }}" class="btn btn-secondary">Batal</a>
-                        </div>
-                    </form>
-                </div>
+            <div class="col-sm-6">
+                <h3 class="fw-bold mb-0">
+                    <i class="bi bi-grid-3x3-gap-fill me-2 text-primary"></i>
+                    Tambah Jenis Hewan
+                </h3>
             </div>
+
         </div>
     </div>
 </div>
+
+
+<div class="app-content">
+    <div class="container-fluid">
+
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-8">
+
+                <div class="card shadow-sm border-0">
+
+                    {{-- CARD HEADER --}}
+                    <div class="card-header bg-primary text-white fw-bold py-3">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Form Tambah Jenis Hewan
+                    </div>
+
+                    <div class="card-body">
+
+                        <form action="{{ route('jenis-hewan.store') }}" method="POST">
+                            @csrf
+
+                            {{-- INPUT --}}
+                            <div class="mb-3">
+                                <label for="nama_jenis_hewan" class="fw-semibold">Nama Jenis Hewan</label>
+                                <input 
+                                    type="text" 
+                                    name="nama_jenis_hewan" 
+                                    id="nama_jenis_hewan"
+                                    class="form-control shadow-sm @error('nama_jenis_hewan') is-invalid @enderror"
+                                    value="{{ old('nama_jenis_hewan') }}" 
+                                    required
+                                >
+
+                                @error('nama_jenis_hewan')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            {{-- BUTTON --}}
+                            <div class="text-end mt-4">
+
+                                <a href="{{ route('jenis-hewan.index') }}" class="btn btn-secondary shadow-sm px-4 me-2">
+                                    <i class="bi bi-x-circle me-1"></i>
+                                    Batal
+                                </a>
+
+                                <button type="submit" class="btn btn-primary shadow-sm px-4">
+                                    <i class="bi bi-save me-1"></i>
+                                    Simpan
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
 @endsection

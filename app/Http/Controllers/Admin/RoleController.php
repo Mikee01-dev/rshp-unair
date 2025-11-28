@@ -38,7 +38,7 @@ class RoleController extends Controller
             'nama_role' => ucwords(strtolower($request->nama_role)),
         ]);
 
-        return redirect()->route('admin.role.index')->with('success', 'Role berhasil ditambahkan.');
+        return redirect()->route('role.index')->with('success', 'Role berhasil ditambahkan.');
     }
 
     /**
@@ -64,7 +64,7 @@ class RoleController extends Controller
             'nama_role' => ucwords(strtolower($request->nama_role)),
         ]);
 
-        return redirect()->route('admin.role.index')->with('success', 'Role berhasil diperbarui.');
+        return redirect()->route('role.index')->with('success', 'Role berhasil diperbarui.');
     }
 
     /**
@@ -75,6 +75,6 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
         $role->delete();
 
-        return redirect()->route('admin.role.index')->with('success', 'Role berhasil dihapus.');
+        return redirect()->route('role.index')->with('success', 'Role berhasil dihapus.');
     }
 }
