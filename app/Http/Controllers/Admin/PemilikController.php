@@ -51,7 +51,7 @@ class PemilikController extends Controller
                 'alamat' => $request->alamat,
             ]);
 
-            return redirect()->route('admin.pemilik.index')
+            return redirect()->route('pemilik.index')
                 ->with('success', 'Pemilik berhasil ditambahkan.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal menambahkan pemilik: ' . $e->getMessage());

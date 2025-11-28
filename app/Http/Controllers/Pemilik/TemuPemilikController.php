@@ -1,38 +1,24 @@
 <?php
-
 namespace App\Http\Controllers\Pemilik;
-
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Pemilik;
 use App\Models\TemuDokter;
-use App\Models\Pet;
 
 class TemuPemilikController extends Controller
 {
-    /**
-     * Menampilkan daftar Temu Dokter untuk Pet milik user yang sedang login.
-     * Route: /pemilik/temu-dokter
-     */
     public function index()
     {
-        // Ambil pemilik terkait user login
-        $pemilik = Auth::user()->pemilik;
+        $pemilik = Pemilik::where('iduser', Auth::id())->first();
 
-        if (!$pemilik) {
-            abort(403, 'Anda tidak memiliki akses ke Temu Dokter.');
-        }
+        // Ambil jadwal temu dimana hewannya milik user ini
+        $jadwal = TemuDokter::with(['pet.ras'])
+                    ->whereHas('pet', function($q) use ($pemilik) {
+                        $q->where('idpemilik', $pemilik->idpemilik);
+                    })
+                    ->orderBy('waktu_daftar', 'desc')
+                    ->get();
 
-        // Ambil semua ID Pet milik pemilik
-        $petIds = Pet::where('idpemilik', $pemilik->idpemilik)->pluck('idpet');
-
-        // Query TemuDokter untuk pet milik pemilik ini
-        $temuDokter = TemuDokter::with(['pet', 'dokter'])
-                        ->whereIn('idpet', $petIds)
-                        ->orderBy('waktu_daftar', 'desc') // Ganti 'tanggal' → 'waktu_daftar'
-                        ->get();
-
-
-        return view('pemilik.temu-dokter.index', compact('temuDokter'));
+        return view('pemilik.temu-dokter.index', compact('jadwal'));
     }
 }

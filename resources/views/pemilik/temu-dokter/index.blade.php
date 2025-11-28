@@ -1,41 +1,30 @@
-@extends('layouts.pemilik')
-
+@extends('layouts.lte.main')
 @section('content')
-<div class="container">
-    <div class="card shadow-sm">
-        <div class="card-header bg-success text-white">
-            <h3 class="mb-0">Riwayat Temu Dokter</h3>
-        </div>
-        
-        <div class="card-body">
-            @if ($temuDokter->isEmpty())
-                <div class="alert alert-warning text-center" role="alert">
-                    Anda belum memiliki riwayat temu dokter untuk Pet Anda.
-                </div>
-            @else
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped mt-3">
-                        <thead>
-                            <tr>
-                                <th style="width: 15%;">Pet</th>
-                                <th style="width: 15%;">Tanggal Daftar</th>
-                                <th style="width: 10%;">Waktu</th>
-                                <th style="width: 10%;">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($temuDokter as $temu)
-                            <tr>
-                                <td>{{ $temu->pet->nama ?? 'Pet Dihapus' }}</td>
-                                <td>{{ $temu->waktu_daftar ? \Carbon\Carbon::parse($temu->waktu_daftar)->format('d M Y') : 'N/A' }}</td>
-                                <td>{{ $temu->waktu_daftar ? \Carbon\Carbon::parse($temu->waktu_daftar)->format('H:i') : 'N/A' }}</td>
-                                <td>{{ ucfirst($temu->status) }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            @endif
+<div class="app-content-header"><div class="container-fluid"><h3>Jadwal Kunjungan</h3></div></div>
+<div class="app-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead><tr><th>Tanggal/Jam</th><th>Hewan</th><th>Status</th></tr></thead>
+                    <tbody>
+                        @forelse($jadwal as $item)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($item->waktu_daftar)->format('d M Y, H:i') }}</td>
+                            <td>{{ $item->pet->nama }}</td>
+                            <td>
+                                @if($item->status == 'B') <span class="badge bg-warning text-dark">Menunggu</span>
+                                @elseif($item->status == 'P') <span class="badge bg-info">Sedang Diperiksa</span>
+                                @elseif($item->status == 'S') <span class="badge bg-success">Selesai</span>
+                                @else <span class="badge bg-danger">Batal</span> @endif
+                            </td>
+                        </tr>
+                        @empty
+                        <tr><td colspan="3" class="text-center">Belum ada riwayat kunjungan.</td></tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

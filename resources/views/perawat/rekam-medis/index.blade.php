@@ -1,41 +1,67 @@
-@extends('layouts.perawat')
+@extends('layouts.lte.main')
 
 @section('content')
-
-<div class="container">
-    <link rel="stylesheet" href="{{ asset('css/page.css') }}">
-    <div class="judul-halaman">Daftar Rekam Medis</div>
+<div class="app-content-header">
+    <div class="container-fluid">
+        <h3 class="mb-0">Arsip Rekam Medis</h3>
+    </div>
 </div>
-<div class="container">
-    @foreach ($rekamMedis as $rm)
-    
-        <div class="rekam-medis-block">
-            <h3>Rekam Medis #{{ $rm->idrekam_medis }} - {{ $rm->pet->nama }}</h3>
-            <p><strong>Anamnesa:</strong> {{ $rm->anamnesa }}</p>
-            <p><strong>Diagnosa:</strong> {{ $rm->diagnosa }}</p>
-        
-            <h4>Detail Tindakan:</h4>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tindakan/Terapi</th>
-                        <th>Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($rm->detailRekamMedis as $detail)
-                    <tr>
-                        <td>{{ $detail->kodeTindakanTerapi->nama_tindakan ?? 'Tidak ada tindakan' }}</td>
-                        <td>{{ $detail->detail }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            
+
+<div class="app-content">
+    <div class="container-fluid">
+        <div class="card card-outline card-info">
+            <div class="card-header">
+                <form action="{{ route('perawat.rekam-medis.index') }}" method="GET">
+                    <div class="input-group" style="width: 300px;">
+                        <input type="text" name="search" class="form-control" placeholder="Cari Nama Pasien..." value="{{ request('search') }}">
+                        <button class="btn btn-default"><i class="bi bi-search"></i> Cari</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Pasien</th>
+                            <th>Dokter</th>
+                            <th>Diagnosa</th>
+                            <th class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($riwayat as $rm)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($rm->created_at)->format('d M Y') }}</td>
+                            <td>
+                                <strong>{{ $rm->pet->nama }}</strong><br>
+                                <small class="text-muted">{{ $rm->pet->ras->nama_ras ?? '' }}</small>
+                            </td>
+                            <td>{{ $rm->dokter->user->nama ?? '-' }}</td>
+                            <td>
+                                <span class="badge bg-secondary text-wrap" style="max-width: 200px;">
+                                    {{ Str::limit($rm->diagnosa, 50) }}
+                                </span>
+                            </td>
+                            <td class="text-center">
+                            <div class="btn-group">
+                                <a href="{{ route('perawat.rekam-medis.show', $rm->idrekam_medis) }}" class="btn btn-sm btn-info text-white">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+
+                                <a href="{{ route('perawat.rekam-medis.edit', $rm->idrekam_medis) }}" class="btn btn-sm btn-warning">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr><td colspan="5" class="text-center py-4">Data rekam medis tidak ditemukan.</td></tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
-    @endforeach
+    </div>
 </div>
-
 @endsection

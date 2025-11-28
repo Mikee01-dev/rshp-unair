@@ -5,28 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RekamMedis extends Model
+class RekamMedis extends Model 
 {
-    use HasFactory;
-
     protected $table = 'rekam_medis';
     protected $primaryKey = 'idrekam_medis';
-    protected $fillable = ['anamnesa', 'temuan_klinis', 'diagnosa', 'idpet', 'dokter_pemeriksa'];
+    protected $guarded = [];
+    public $timestamps = false;
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
 
-    public function pet()
-    {
+    public function pet() {
         return $this->belongsTo(Pet::class, 'idpet');
     }
 
-    public function detailRekamMedis()
-    {
+    public function dokter() {
+        // Relasi ke tabel role_user, lalu ke user
+        return $this->belongsTo(RoleUser::class, 'dokter_pemeriksa', 'idrole_user');
+    }
+
+    public function details() {
         return $this->hasMany(DetailRekamMedis::class, 'idrekam_medis');
     }
 
-    public function dokter()
-    {
-        return $this->belongsTo(Dokter::class, 'dokter_pemeriksa');
-    }
-
-    
 }

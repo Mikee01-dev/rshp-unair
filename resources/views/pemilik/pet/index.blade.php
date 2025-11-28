@@ -1,51 +1,27 @@
-@extends('layouts.pemilik') 
-
+@extends('layouts.lte.main')
 @section('content')
-<div class="container">
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Data Pet Saya</h3>
-        </div>
-        
-        <div class="card-body">
-            @if ($pets->isEmpty())
-                <div class="alert alert-warning text-center" role="alert">
-                    Anda belum memiliki data Pet yang terdaftar.
+<div class="app-content-header"><div class="container-fluid"><h3>Hewan Peliharaan Saya</h3></div></div>
+<div class="app-content">
+    <div class="container-fluid">
+        <div class="row">
+            @foreach($pets as $pet)
+            <div class="col-md-4">
+                <div class="card card-widget widget-user-2 shadow-sm">
+                    <div class="widget-user-header bg-warning">
+                        <div class="widget-user-image"><i class="bi bi-gitlab display-6 text-white bg-secondary rounded-circle p-2"></i></div>
+                        <h3 class="widget-user-username">{{ $pet->nama }}</h3>
+                        <h5 class="widget-user-desc">{{ $pet->ras->jenisHewan->nama_jenis_hewan }} / {{ $pet->ras->nama_ras }}</h5>
+                    </div>
+                    <div class="card-footer p-0">
+                        <ul class="nav flex-column">
+                            <li class="nav-item p-3">Gender <span class="float-end badge bg-primary">{{ $pet->jenis_kelamin }}</span></li>
+                            <li class="nav-item p-3">Warna <span class="float-end">{{ $pet->warna_tanda }}</span></li>
+                            <li class="nav-item p-3">Lahir <span class="float-end">{{ $pet->tanggal_lahir }}</span></li>
+                        </ul>
+                    </div>
                 </div>
-            @else
-                <table class="table table-bordered table-striped mt-3">
-                    <thead>
-                        <tr>
-                            <th style="width: 20%;">Nama</th>
-                            <th style="width: 20%;">Jenis</th>
-                            <th style="width: 20%;">Ras</th>
-                            <th style="width: 20%;">Jenis Kelamin</th>
-                            <th style="width: 20%;">Tanggal Lahir</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($pets as $pet)
-                        <tr>
-                            <td>{{ $pet->nama }}</td>
-                            <td>{{ $pet->ras->jenis->nama_jenis_hewan ?? 'N/A' }}</td>
-                            <td>{{ $pet->ras->nama_ras ?? 'N/A' }}</td>
-                            <td>
-                                @if($pet->jenis_kelamin === 'J')
-                                    Jantan
-                                @elseif($pet->jenis_kelamin === 'B')
-                                    Betina
-                                @else
-                                    N/A
-                                @endif
-                            </td>
-                            <td>
-                                {{ $pet->tanggal_lahir ? \Carbon\Carbon::parse($pet->tanggal_lahir)->format('d M Y') : 'N/A' }}
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
+            </div>
+            @endforeach
         </div>
     </div>
 </div>

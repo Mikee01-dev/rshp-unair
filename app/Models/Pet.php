@@ -2,36 +2,35 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Pet extends Model
 {
+    use HasFactory;
+
     protected $table = 'pet';
     protected $primaryKey = 'idpet';
-    public $timestamps = false;
+    
+    // Matikan timestamp jika tabel tidak punya created_at/updated_at
+    public $timestamps = false; 
 
-    protected $fillable = [
-        'nama',
-        'idras_hewan',
-        'idjenis_hewan',
-        'warna_tanda',
-        'tanggal_lahir',
-        'jenis_kelamin',
-        'idpemilik',
-    ];
+    // OPSI 1: Izinkan semua kolom diisi (Paling Gampang)
+    protected $guarded = [];
 
-    public function ras()
-    {
-        return $this->belongsTo(RasHewan::class, 'idras_hewan', 'idras_hewan');
-    }
+    // OPSI 2: Atau pakai Fillable (Kalau mau ketat)
+    // protected $fillable = ['nama', 'tanggal_lahir', 'warna_tanda', 'jenis_kelamin', 'idpemilik', 'idras_hewan'];
 
-    public function jenis()
-    {
-        return $this->belongsTo(JenisHewan::class, 'idjenis_hewan', 'idjenis_hewan');
-    }
-
+    // --- Relasi ---
     public function pemilik()
     {
-        return $this->belongsTo(Pemilik::class, 'idpemilik', 'idpemilik');
+        return $this->belongsTo(Pemilik::class, 'idpemilik');
     }
+
+    public function ras() // Sesuai nama function yang dipanggil di view: $pet->ras
+    {
+        return $this->belongsTo(RasHewan::class, 'idras_hewan');
+    }
+
+    
 }

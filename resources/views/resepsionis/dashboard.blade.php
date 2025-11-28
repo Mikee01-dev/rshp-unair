@@ -1,4 +1,4 @@
-@extends('layouts.resepsionis')
+@extends('layouts.lte.main')
 
 @section('content')
     <h1>Dashboard Resepsionis</h1>

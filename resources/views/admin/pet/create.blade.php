@@ -1,89 +1,130 @@
 @extends('layouts.lte.main')
+
 @section('content')
-<div class="container">
-    <link rel="stylesheet" href="{{ asset('css/page.css') }}">
-
-    <h2 class="judul-halaman">Tambah Pet Baru</h2>
-
-    <!-- Menampilkan error validasi -->
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+<div class="app-content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6"><h3>Tambah Pasien Baru</h3></div>
+            <div class="col-sm-6 text-end">
+                <a href="{{ route('pet.index') }}" class="btn btn-secondary">Kembali</a>
+            </div>
         </div>
-    @endif
-
-    <form method="POST" action="{{ route('pet.store') }}">
-        @csrf
-
-        <div class="form-group">
-            <label for="namat">Nama Pet</label>
-            <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama') }}" required>
-            @error('nama') <small class="text-danger">{{ $message }}</small> @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="idras_hewan">Ras Hewan</label>
-            <select name="idras_hewan" id="idras_hewan" class="form-control" required>
-                <option value="">-- Pilih Ras --</option>
-                @if(!empty($ras))
-                    @foreach($ras as $r)
-                        <option value="{{ $r->idras_hewan }}" {{ old('idras_hewan') == $r->idras_hewan ? 'selected' : '' }}>
-                            <!-- Menampilkan Nama Ras dan Jenis-nya (dari relasi 'jenis' yg di-load Controller) -->
-                            {{ $r->nama_ras ?? 'Ras T/A' }} ({{ $r->jenis->nama_jenis_hewan ?? 'Jenis T/A' }})
-                        </option>
-                    @endforeach
-                @endif
-            </select>
-            @error('idras_hewan') <small class="text-danger">{{ $message }}</small> @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="idpemilik">Pemilik</label>
-            <select name="idpemilik" id="idpemilik" class="form-control" required>
-                <option value="">-- Pilih Pemilik --</option>
-                @if(!empty($pemilik))
-                    @foreach($pemilik as $p)
-                        <option value="{{ $p->idpemilik }}" {{ old('idpemilik') == $p->idpemilik ? 'selected' : '' }}>
-                            <!-- Menampilkan Nama Pemilik (dari relasi 'user' yg di-load Controller) -->
-                            {{ $p->user->name ?? 'Pemilik T/A' }}
-                        </option>
-                    @endforeach
-                @endif
-            </select>
-            @error('idpemilik') <small class="text-danger">{{ $message }}</small> @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="tanggal_lahir">Tanggal Lahir</label>
-            <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control" value="{{ old('tanggal_lahir') }}" required>
-            @error('tanggal_lahir') <small class="text-danger">{{ $message }}</small> @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="jenis_kelamin">Jenis Kelamin</label>
-            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control" required>
-                <option value="">-- Pilih --</option>
-                <option value="Jantan" {{ old('jenis_kelamin') == 'Jantan' ? 'selected' : '' }}>Jantan</option>
-                <option value="Betina" {{ old('jenis_kelamin') == 'Betina' ? 'selected' : '' }}>Betina</option>
-            </select>
-            @error('jenis_kelamin') <small class="text-danger">{{ $message }}</small> @enderror
-        </div>
-
-        <!-- Field ini ada di Model Pet.php dan controller perbaikan -->
-        <div class="form-group">
-            <label for="warna_tanda">Warna/Tanda</label>
-            <textarea name="warna_tanda" id="warna_tanda" class="form-control" rows="4">{{ old('warna_tanda') }}</textarea>
-            @error('warna_tanda') <small class="text-danger">{{ $message }}</small> @enderror
-        </div>
-
-        <div class="form-group mt-3">
-            <button type="submit" class="btn btn-primary">Simpan</button>
-            <a href="{{ route('pet.index') }}" class="btn btn-secondary">Batal</a>
-        </div>
-    </form>
+    </div>
 </div>
+
+<div class="app-content">
+    <div class="container-fluid">
+        <form action="{{ route('pet.store') }}" method="POST">
+            @csrf
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body">
+                            
+                            <div class="mb-3">
+                                <label class="fw-bold">Pemilik Hewan</label>
+                                <select name="idpemilik" class="form-select select2" required>
+                                    <option value="">-- Pilih Pemilik --</option>
+                                    @foreach($pemiliks as $p)
+                                        <option value="{{ $p->idpemilik }}">
+                                            {{ $p->user->nama ?? 'User Tidak Ditemukan' }} - ({{ $p->alamat }})
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="form-text">
+                                    Pemilik belum terdaftar? <a href="{{ route('pemilik.create') }}">Tambah Pemilik Baru</a>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label>Nama Hewan</label>
+                                    <input type="text" name="nama" class="form-control" placeholder="Contoh: Mochi" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>Tanggal Lahir (Estimasi)</label>
+                                    <input type="date" name="tanggal_lahir" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label>Jenis Hewan</label>
+                                    <select name="dummy_jenis" id="select-jenis" class="form-select" onchange="updateRas()" required>
+                                        <option value="">-- Pilih Jenis --</option>
+                                        @foreach($jenis_hewans as $jh)
+                                            <option value="{{ $jh->idjenis_hewan }}">{{ $jh->nama_jenis_hewan }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label>Ras Hewan</label>
+                                    <select name="idras_hewan" id="select-ras" class="form-select" required>
+                                        <option value="">-- Pilih Jenis Dulu --</option>
+                                        </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label>Jenis Kelamin</label>
+                                    <select name="jenis_kelamin" class="form-select" required>
+                                        <option value="J">Jantan</option>
+                                        <option value="B">Betina</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>Warna / Tanda Fisik</label>
+                                    <input type="text" name="warna_tanda" class="form-control" placeholder="Contoh: Belang Tiga, Ekor Pendek" required>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-footer text-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Simpan Data Pasien
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // 1. Ambil data Ras lengkap dari Controller dan ubah jadi JSON Object
+    const allRas = @json($ras_hewans);
+
+    function updateRas() {
+        // Ambil ID Jenis yang dipilih user
+        const jenisId = document.getElementById('select-jenis').value;
+        const rasDropdown = document.getElementById('select-ras');
+
+        // Kosongkan Dropdown Ras
+        rasDropdown.innerHTML = '<option value="">-- Pilih Ras --</option>';
+
+        // Jika user belum pilih jenis, stop disini
+        if (!jenisId) return;
+
+        // Filter data ras yang punya idjenis_hewan sama dengan yang dipilih
+        const filteredRas = allRas.filter(item => item.idjenis_hewan == jenisId);
+
+        // Jika tidak ada ras yang cocok (misal data kosong)
+        if (filteredRas.length === 0) {
+            rasDropdown.innerHTML += '<option value="" disabled>Data Ras Kosong</option>';
+        }
+
+        // Loop hasil filter dan masukkan ke dropdown Ras
+        filteredRas.forEach(ras => {
+            const option = document.createElement('option');
+            option.value = ras.idras_hewan;
+            option.text = ras.nama_ras;
+            rasDropdown.add(option);
+        });
+    }
+</script>
 @endsection
