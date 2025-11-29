@@ -1,7 +1,7 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
     <div class="sidebar-brand">
         <a href="{{ url('/') }}" class="brand-link">
-            <img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image opacity-75 shadow" />
+            <img src="{{ asset('img/rshp.png') }}" alt="RSHP Logo" class="brand-image opacity-75 shadow" />
             <span class="brand-text fw-light">RSHP UNAIR</span>
         </a>
     </div>
