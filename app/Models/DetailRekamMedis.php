@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Blameable;
 
 class DetailRekamMedis extends Model
 {
     use HasFactory;
+    use Blameable;
 
     protected $table = 'detail_rekam_medis';
     protected $primaryKey = 'iddetail_rekam_medis';

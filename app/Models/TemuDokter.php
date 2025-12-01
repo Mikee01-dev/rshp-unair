@@ -4,8 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Blameable;
 
-class TemuDokter extends Model {
+class TemuDokter extends Model 
+{
+    use Blameable;
     protected $table = 'temu_dokter';
     protected $primaryKey = 'idreservasi_dokter';
     protected $guarded = [];

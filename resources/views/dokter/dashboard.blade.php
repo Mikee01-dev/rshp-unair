@@ -9,7 +9,7 @@
         <div class="row align-items-center">
             <div class="col-sm-6">
                 <h3 class="fw-bold mb-0">
-                    <i class="bi bi-heart-pulse text-primary me-2"></i>
+                    <i class="bi bi-heart-pulse text-info me-2"></i>
                     Halo, drh. {{ Auth::user()->nama }}
                 </h3>
                 <p class="text-muted mb-0">Berikut adalah pasien yang siap diperiksa hari ini.</p>
@@ -35,7 +35,7 @@
         @endif
 
         <div class="card shadow-sm border-0 mt-3">
-            <div class="card-header bg-primary text-white fw-bold">
+            <div class="card-header bg-info text-white fw-bold">
                 <i class="bi bi-people-fill me-2"></i>
                 Antrian Pasien (Siap Periksa)
             </div>

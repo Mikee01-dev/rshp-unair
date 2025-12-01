@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Blameable;
 
 class RasHewan extends Model
 {
+    use Blameable;
     protected $table = 'ras_hewan';
     protected $primaryKey = 'idras_hewan';
     public $timestamps = false;

@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use App\Traits\Blameable;
 
 class Perawat extends Model
 {
     use HasFactory;
+    use Blameable;
 
     protected $table = 'perawat';
     protected $primaryKey = 'id_perawat';

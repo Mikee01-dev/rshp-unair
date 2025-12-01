@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Blameable;
 
 class Pemilik extends Model
 {
+    use Blameable;
     protected $table = 'pemilik';
     protected $primaryKey = 'idpemilik';
 

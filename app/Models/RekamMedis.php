@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Blameable;
 
 class RekamMedis extends Model 
 {
+    use Blameable;
     protected $table = 'rekam_medis';
     protected $primaryKey = 'idrekam_medis';
     protected $guarded = [];

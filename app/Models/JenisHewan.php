@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Blameable;
 
 class JenisHewan extends Model
 {
+    use Blameable;
     protected $table = 'jenis_hewan';
     protected $primaryKey = 'idjenis_hewan';
     public $timestamps = false;

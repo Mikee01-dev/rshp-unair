@@ -9,7 +9,7 @@
 
             <div class="col-sm-6">
                 <h3 class="fw-bold mb-0">
-                    <i class="bi bi-heart-pulse-fill text-primary me-2"></i>
+                    <i class="bi bi-heart-pulse-fill text-info me-2"></i>
                     Dashboard Perawat (Triage)
                 </h3>
             </div>
@@ -37,7 +37,7 @@
 
         {{-- CARD TABLE --}}
         <div class="card shadow-sm border-0 mt-3">
-            <div class="card-header bg-primary text-white fw-bold">
+            <div class="card-header bg-info text-white fw-bold">
                 <i class="bi bi-people-fill me-2"></i>
                 Antrian Menunggu Pemeriksaan Awal
             </div>
@@ -85,7 +85,7 @@
                             {{-- AKSI --}}
                             <td class="text-center">
                                 <a href="{{ route('perawat.triage.create', $item->idreservasi_dokter) }}" 
-                                   class="btn btn-primary btn-sm shadow-sm">
+                                   class="btn btn-info btn-sm shadow-sm">
                                     <i class="bi bi-clipboard-pulse me-1"></i>
                                     Proses Data Awal
                                 </a>

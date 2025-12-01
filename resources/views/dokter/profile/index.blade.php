@@ -47,8 +47,8 @@
                             </li>
 
                             <li class="list-group-item d-flex justify-content-between">
-                                <strong>Pendidikan Terakhir</strong>
-                                <span>{{ $dokter->pendidikan ?? '-' }}</span>
+                                <strong>Bidang Dokter</strong>
+                                <span>{{ $dokter->bidang_dokter ?? '-' }}</span>
                             </li>
 
                             <li class="list-group-item d-flex justify-content-between">

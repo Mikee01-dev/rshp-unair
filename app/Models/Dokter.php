@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Blameable;
 
 class Dokter extends Model
 {
     use HasFactory;
+    use Blameable;
 
     protected $table = 'dokter';
     protected $primaryKey = 'id_dokter';
