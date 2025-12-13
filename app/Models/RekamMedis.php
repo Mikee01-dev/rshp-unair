@@ -22,7 +22,6 @@ class RekamMedis extends Model
     }
 
     public function dokter() {
-        // Relasi ke tabel role_user, lalu ke user
         return $this->belongsTo(RoleUser::class, 'dokter_pemeriksa', 'idrole_user');
     }
 

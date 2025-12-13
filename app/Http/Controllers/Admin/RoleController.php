@@ -8,9 +8,6 @@ use App\Models\Role;
 
 class RoleController extends Controller
 {
-    /**
-     * Tampilkan semua role
-     */
     public function index()
     {
         $roles = Role::all();

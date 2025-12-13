@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Blameable;
 
@@ -18,7 +17,6 @@ class Pemilik extends Model
         'alamat',
         'no_wa',
     ];
-
 
     public function user()
     {

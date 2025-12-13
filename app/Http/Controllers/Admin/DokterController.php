@@ -14,7 +14,6 @@ class DokterController extends Controller
         $dokters = Dokter::with('user')->get();
         return view('admin.dokter.index', compact('dokters'));
     }
-// Add import for User model
 
     public function create()
     {

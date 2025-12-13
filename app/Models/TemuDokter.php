@@ -26,9 +26,6 @@ class TemuDokter extends Model
 
     public function rekamMedis()
     {
-        // Hubungan: Satu Antrian punya Satu Rekam Medis
-        // Parameter 2: Foreign Key di tabel rekam_medis (idreservasi_dokter)
-        // Parameter 3: Local Key di tabel temu_dokter (idreservasi_dokter)
         return $this->hasOne(RekamMedis::class, 'idreservasi_dokter', 'idreservasi_dokter');
     }
 }

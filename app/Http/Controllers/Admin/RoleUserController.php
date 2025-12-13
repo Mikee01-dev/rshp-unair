@@ -11,9 +11,6 @@ use App\Models\RoleUser;
 
 class RoleUserController extends Controller
 {
-    /**
-     * Menampilkan semua user dan rolenya.
-     */
     public function index()
     {
         $roleUser = RoleUser::with('user', 'role')->get();

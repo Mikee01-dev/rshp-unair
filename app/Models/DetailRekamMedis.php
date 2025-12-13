@@ -28,9 +28,6 @@ class DetailRekamMedis extends Model
 
         public function tindakan()
     {
-        // Relasi ke tabel 'kode_tindakan_terapi'
-        // Parameter 2: nama kolom foreign key di tabel detail_rekam_medis
-        // Parameter 3: nama kolom primary key di tabel kode_tindakan_terapi
         return $this->belongsTo(KodeTindakanTerapi::class, 'idkode_tindakan_terapi', 'idkode_tindakan_terapi');
     }
 
