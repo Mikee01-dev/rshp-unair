@@ -93,6 +93,16 @@
                                         <i class="bi bi-pencil"></i>
                                     </a>
 
+                                    <form action="{{ route('rekam-medis.destroy', $rm->idrekam_medis) }}"
+                                          method="POST"
+                                          onsubmit="return confirm('Hapus rekam medis ini?')">
+                                        @csrf 
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-danger" title="Hapus">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+
                                 </div>
                             </td>
                         </tr>
